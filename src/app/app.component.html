@@ -6,10 +6,16 @@
 </div>
 
 
-
+<!-- ATTRIBUTE DIRECTIVES-->
+<!--To create a directive in the terminal we do
+ng g directive directives/highlighted
+where g is for generate, directive tells angular what to scaffold 
+and directives is the folder, and highlighted is the name of the directive-->
 <div class="courses" *ngIf="courses[0] as course">
 
-    <course-card
+    <!-- here course-card is said to be the host element of the
+    highlighted directive-->
+    <!-- <course-card highlighted
             (courseSelected)="onCourseSelected($event)"
                  [course]="course">
 
@@ -19,8 +25,21 @@
             {{ course.longDescription }}
         </div>
 
-    </course-card>
+    </course-card> -->
+    
+    <!-- here we can add an input property but it won't be applied 
+    to the course-card element but to the highlighted directive-->
+    <course-card [highlighted]="true"
+    (courseSelected)="onCourseSelected($event)"
+         [course]="course">
 
+        <course-image [src]="course.iconUrl"></course-image>
+
+    <div class="course-description">
+        {{ course.longDescription }}
+    </div>
+
+</course-card>
 
 </div>
 
