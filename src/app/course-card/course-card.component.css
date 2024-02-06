@@ -3,4 +3,117 @@
     background: lightsalmon;
 }
 
+/* The default view encapsulation mechanism is "Emulated" defined 
+in the course-card.component.ts file in the @Component section*/
+/* All the View Encapsulation Options discussed here belong to the
+ViewEncapsulation.Emulated option */
 
+/* View Encapsulation: CSS Class Selectors */
+/* Because this style is defined here,
+it will not be applied to components that use it, 
+other than the course-card component.
+The styles in this file are specific to their 
+respective components. */
+.course-card {
+    margin-bottom: 40px;
+    text-align: center;
+    border-radius: 4px;
+    padding: 20px 0;
+    box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(0, 0, 0, .12);
+}
+
+/* View Encapsulation: HTML Tag Selectors */
+/* We moved the styles from Styles.css such as:
+course-card {
+    display: block;
+}
+course-card.is-first {
+    border-top: 2px solid grey;
+    padding-top: 20px;
+}
+and so on. Only that if we are dealing with HTML tag selectors
+that point to the component itself, in this case course-card 
+html element, when we move these styles to this file, that is to the 
+course-card.component.css, we need to change the CSS selector
+from course-card to :host. This will stamp onto the host element 
+in this case the course card html element an attribute called 
+nghost-c0, or nghost-c1, or nghost-c2 and so on which 
+will apply these styles to the element. Again the c0 refers to
+component 0, c1 to component 1 and so on*/
+
+:host {
+    display: block;
+}
+
+:host.is-first {
+    border-top: 2px solid grey;
+    padding-top: 20px;
+}
+
+
+:host.is-last {
+    border-bottom: 2px solid grey;
+    padding-top: 20px;
+}
+
+:host.is-even {
+    background: lightgray;
+}
+
+
+:host.is-odd {
+    background: lightcyan;
+}
+
+/* View Encapsulation: Bypassing the View Encapsulation
+    Mechanism with ngdeep */
+/* All css styles defined in this css file are being made specfic
+of the course-card component that is are being stamped with the 
+ngcontent-c1 tag. */
+/* The problem is that some styles like .course-description is being
+applied via content projection, and is actually a member of the 
+app.component.html page. */
+/* So there is a mismatch between the attribute applied to the course 
+description classed div which will be ngcontent-c0 since it belongs 
+to the app.component component, and the styles we want applied to it. 
+Which belong in the course-card component*/
+/* To solve this we add ngdeep before the css selector */
+/* Whenever we write ngdeep, the part that comes to the right of 
+ngdeep will not be made part of that specific component so in the 
+case of .course-description, if we had the style like this:
+.course-card .course-description {
+    max-width: 360px;
+    margin: 0 auto;
+    margin-top: 15px;
+  user-select: none;
+}*/
+/* We make it into */
+.course-card ::ng-deep .course-description {
+    max-width: 360px;
+    margin: 0 auto;
+    margin-top: 15px;
+  user-select: none;
+}
+/* This mechanism is useful to apply to elements like the 
+<ng-content select=".course-description"></ng-content>
+element in the course-card html file, that is elements that we 
+have received via Content Projection, that are actually memebers 
+of other components */
+/* What we are saying with 
+::ng-deep .course-description {
+is inside the course card component we are 
+targeting any element using this css independently of
+whether it is a member of another component */
+
+
+/* View Encapsulation: Host :host-context() */
+/* We might want to change the style of a course card only when 
+there is a theme is being applied in a parent component. 
+But we only want to apply the style of the parent component to 
+the course card contained component, and not any other component or 
+html element. */
+:host-context(.salmon-theme) .course-card {
+    background: lightsalmon;
+}
+/* The style is then applied to all .course-card classed components 
+that are children of the salmon-themed class div. */

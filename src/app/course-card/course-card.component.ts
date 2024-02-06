@@ -9,7 +9,8 @@ import {
     Input,
     OnInit,
     Output, QueryList, TemplateRef,
-    ViewChild
+    ViewChild,
+    ViewEncapsulation
 } from '@angular/core';
 import {COURSES} from '../../db-data';
 import {Course} from '../model/course';
@@ -18,7 +19,17 @@ import {CourseImageComponent} from '../course-image/course-image.component';
 @Component({
     selector: 'course-card',
     templateUrl: './course-card.component.html',
-    styleUrls: ['./course-card.component.css']
+    // here we pass the specific stylesheets
+    styleUrls: ['./course-card.component.css'],
+    // here we add the default view encapsulation mechanism
+    encapsulation: ViewEncapsulation.Emulated
+    // we could have chosen:
+    // ViewEncapsulation.None - That will use plain CSS
+    // without the Angular host and ngdeep and so on don't work
+    // ViewEncapsulation.Native - Do not use, it has been deprecated
+    // ViewEncapsulation.ShadowDom - To be applied in the future.
+    // Uses browser provided functionality instead of host, ngdeep and 
+    // so on
 })
 export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentInit {
 
