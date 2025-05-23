@@ -13,15 +13,12 @@ export class AppComponent implements AfterViewInit {
 
     courses = COURSES;
 
-    // this is a way for this model to access
-    // the highlighted directive programmatically
-    // which we use in the ngAfterViewInit hook
+    /* This is a way for this model to access the highlighted directive programmatically which we use in the ngAfterViewInit hook
     // @ViewChild(HighlightedDirective)
     // highlighted: HighlightedDirective;
     
-    // alternatively:
-    // if we have multiple custom attribute directives
-    // we can query them separately like this:
+    Alternatively:
+    If we have multiple custom attribute directives we can query them separately like this: */
     @ViewChild(CourseCardComponent, {read: HighlightedDirective})
     highlighted: HighlightedDirective;
 

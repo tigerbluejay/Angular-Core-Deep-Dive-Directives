@@ -28,8 +28,7 @@ import {CourseImageComponent} from '../course-image/course-image.component';
     // without the Angular host and ngdeep and so on don't work
     // ViewEncapsulation.Native - Do not use, it has been deprecated
     // ViewEncapsulation.ShadowDom - To be applied in the future.
-    // Uses browser provided functionality instead of host, ngdeep and 
-    // so on
+    // Uses browser provided functionality instead of host, ngdeep and so on
 })
 export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentInit {
 

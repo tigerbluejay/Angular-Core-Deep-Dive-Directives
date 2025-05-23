@@ -5,18 +5,13 @@
 
 </div>
 
-<!-- The salmon-theme is not affecting the div immediately following 
-because we use the :host-context() modifier in the css file. -->
+<!-- The salmon-theme is not affecting the div immediately following  because we use the :host-context() modifier in the css file. -->
 <div class="salmon-theme">
-    <!-- If we move the course-card style from styles.css and we place it into 
-    course-card.component.css, then the style will not work. Why? 
-    This is because of View Encapsulation. Styles are specfic to the 
-    components. More precisely all styles in course-card.component.css will 
+    <!-- If we move the course-card style from styles.css and we place it into course-card.component.css, then the style will not work. Why? 
+    This is because of View Encapsulation. Styles are specfic to the components. More precisely all styles in course-card.component.css will 
     be applied to all elements in course-card.component.html. How? 
-    Angular will create an attribute and apply it to all the elements defined 
-    within the html file. The attribute names are: "ngcontent-c0" 
-    "ng-content-c1" "ng-content-c2" and so on. c0 refers to component 0, 
-    c1 refers to component 1, c2, component 2 and so on. -->
+    Angular will create an attribute and apply it to all the elements defined within the html file. The attribute names are: "ngcontent-c0" 
+    "ng-content-c1" "ng-content-c2" and so on. c0 refers to component 0, c1 refers to component 1, c2, component 2 and so on. -->
     <div class="course-card">
         Test Card
     </div>
@@ -25,8 +20,7 @@ because we use the :host-context() modifier in the css file. -->
     <!-- ATTRIBUTE DIRECTIVES-->
     <!--To create a directive in the terminal we do
     ng g directive directives/highlighted
-    where g is for generate, directive tells angular what to scaffold 
-    and directives is the folder, and highlighted is the name of the directive-->
+    where g is for generate, directive tells angular what to scaffold and directives is the folder, and highlighted is the name of the directive-->
     <div class="courses" *ngIf="courses[0] as course">
 
         <!-- here course-card is said to be the host element of the
@@ -43,12 +37,9 @@ because we use the :host-context() modifier in the css file. -->
 
         </course-card> -->
         
-        <!-- here we can add an input property but it won't be applied 
-        to the course-card element but to the highlighted directive-->
-        <!-- The $event on onToggle contains the value emitted by the
-        highlight directive. -->
-        <!-- The #highlighter is a template reference that refers to the
-        template of the highlighted directive. hl is the name we have
+        <!-- here we can add an input property but it won't be applied to the course-card element but to the highlighted directive-->
+        <!-- The $event on onToggle contains the value emitted by the highlight directive. -->
+        <!-- The #highlighter is a template reference that refers to the template of the highlighted directive. hl is the name we have
         used to export this directive -->
         <course-card highlighted #highlighter="hl"
         (toggleHighlight)="onToggle($event)"
@@ -81,8 +72,8 @@ because we use the :host-context() modifier in the css file. -->
                 </div>
             </course-card>
         </div> -->
-    <!-- What we need to know is that structural directive ngIf, is behind
-    the scenes being applied as an attribute directive to a containing
+   
+    <!-- What we need to know is that structural directive ngIf, is behind the scenes being applied as an attribute directive to a containing
     template tag. Like this: -->
     <!-- <ng-template [ngIf]="courses[0]" let-course>
         <div class="courses">
